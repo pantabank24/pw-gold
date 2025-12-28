@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "PW Gold | เช็คราคาทอง ตรวจราคาทอง ประเมินราคาทอง",
   url: "https://pwgold.com/",
-  description: "PW Gold ตรวจราคาทอง เช็คราคาทอง ประเมินราคาทองได้ที่นี่ | รับซื้อทองคำทุกประเภท โทร 0639289393 หรือเดินทางมาที่ร้าน https://maps.app.goo.gl/EkfsWDxkHotsQEPW6",
+  description: "PW Gold ตรวจราคาทอง เช็คราคาทอง ประเมินราคาทองได้ที่นี่ | รับซื้อทองคำทุกประเภท โทร 0896500836 หรือเดินทางมาที่ร้าน https://maps.app.goo.gl/EkfsWDxkHotsQEPW6",
   navItems: [
   ],
   navMenuItems: [
