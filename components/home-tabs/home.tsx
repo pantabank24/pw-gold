@@ -387,7 +387,9 @@ export const HomePages = ({
                           </span>
                           <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                             {(
-                              Math.round((data?.gold965?.ask ?? 0) * 0.96) ?? 0
+                              Math.round(
+                                (data?.gold965?.ask ?? 0) * 0.0656 * 0.96 * 15.2
+                              ) ?? 0
                             ).toLocaleString(`th-TH`, {
                               minimumFractionDigits: 0,
                               maximumFractionDigits: 2,
