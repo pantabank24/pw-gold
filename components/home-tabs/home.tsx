@@ -351,7 +351,7 @@ export const HomePages = ({
               <div className=" col-span-2 flex flex-col h-full gap-y-4 w-full items-center">
                 <div className=" flex w-full text-center flex-col justify-center rounded-3xl py-2 px-5 backdrop-blur-xl border border-yellow-300/20 bg-gradient-to-b from-white/5 to-[#14100b]   ">
                   <span className=" font-bold text-2xl bg-gradient-to-b from-yellow-300 to-yellow-900 bg-clip-text text-transparent mb-1  ">
-                    ทองคำเเท่ง 96.5%
+                    ราคารับซื้อ
                   </span>
                   <div className=" grid grid-cols-2  gap-x-4">
                     <div className="backdrop-blur-xl border border-white/20 bg-gradient-to-b from-black/90 to-[#cf0723] flex flex-col items-center py-5 rounded-2xl h-20 justify-center">
@@ -363,7 +363,7 @@ export const HomePages = ({
                       ) : (
                         <div className=" flex flex-col items-center ">
                           <span className=" font-normal text-sm text-yellow-500">
-                            ราคารับซื้อ (บาท)
+                            ทองคำแท่ง 96.5%
                           </span>
                           <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold flex flex-row">
                             {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
@@ -383,10 +383,12 @@ export const HomePages = ({
                       ) : (
                         <div className=" flex flex-col items-center">
                           <span className=" font-normal text-sm text-yellow-500 ">
-                            ราคาขาย (บาท)
+                            ทองรูปพรรณ 96%
                           </span>
                           <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
-                            {(data?.gold965.bid ?? 0).toLocaleString(`th-TH`, {
+                            {(
+                              Math.round((data?.gold965?.ask ?? 0) * 0.96) ?? 0
+                            ).toLocaleString(`th-TH`, {
                               minimumFractionDigits: 0,
                               maximumFractionDigits: 2,
                             })}
