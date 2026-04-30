@@ -1,5 +1,5 @@
-import axios from 'axios';
-import * as cheerio from 'cheerio';
+import axios from "axios";
+import * as cheerio from "cheerio";
 
 export const dynamic = "force-dynamic";
 
@@ -27,20 +27,54 @@ export async function GET() {
         diff: ask - bid,
         change_today: changeToday,
         change_yesterday: changeFromYesterday,
-        latest_update: latestUpdate
+        latest_update: latestUpdate,
       },
       timestamp: new Date().toISOString(),
     };
 
     return new Response(JSON.stringify(data), {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (err: any) {
-    console.error(err);
-    return new Response(
-      JSON.stringify({ error: err.message || 'Error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    try {
+      return reserved();
+    } catch (err: any) {
+      console.error(err);
+      return new Response(JSON.stringify({ error: err.message || "Error" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
   }
 }
 
+const reserved = async () => {
+  try {
+    const res = await axios.get("https://static-gold.tothanate.workers.dev/");
+
+    var ask = res?.data?.current_prices?.gold_bar?.buy ?? 0;
+    var bid = res?.data?.current_prices?.gold_bar?.sell ?? 0;
+
+    const data = {
+      gold965: {
+        ask,
+        bid,
+        diff: ask - bid,
+        change_today: res?.data?.current_prices?.gold_bar?.change ?? 0,
+        change_yesterday: null,
+        latest_update: res?.data?.metadata?.update_info ?? "",
+      },
+      timestamp: new Date().toISOString(),
+    };
+
+    return new Response(JSON.stringify(data), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (err: any) {
+    console.error(err);
+    return new Response(JSON.stringify({ error: err.message || "Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+};
