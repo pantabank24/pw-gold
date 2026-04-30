@@ -72,9 +72,9 @@ export const HomePages = ({
     }
 
     var goldPrice =
-      (gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.ask ?? 0;
+      (gPrice ? parseFloat(gPrice) : null) ?? data?.gold965?.ask ?? 0;
     var gramPrice =
-      ((gPrice ? parseFloat(gPrice) : null) ?? data?.gold965.ask ?? 0) / 15.2;
+      ((gPrice ? parseFloat(gPrice) : null) ?? data?.gold965?.ask ?? 0) / 15.2;
     switch (option) {
       case "1":
         setCalc(gramPrice * parseFloat(gram ?? "0"));
@@ -86,7 +86,7 @@ export const HomePages = ({
           laborCost: parseFloat(gram ?? "0"),
           costPerBaht: parseFloat(gramPrice.toFixed(2)),
           totalAmount: parseFloat(
-            (gramPrice * parseFloat(gram ?? "0")).toFixed(2)
+            (gramPrice * parseFloat(gram ?? "0")).toFixed(2),
           ),
         });
         break;
@@ -100,7 +100,7 @@ export const HomePages = ({
           laborCost: parseFloat(gram ?? "0"),
           costPerBaht: parseFloat((goldPrice * service * 0.965).toFixed(2)),
           totalAmount: parseFloat(
-            (goldPrice * service * 0.965 * parseFloat(gram ?? "0")).toFixed(2)
+            (goldPrice * service * 0.965 * parseFloat(gram ?? "0")).toFixed(2),
           ),
         });
         break;
@@ -129,7 +129,7 @@ export const HomePages = ({
               (goldPrice + plusCal) *
               service *
               (parseFloat(percent) / 100)
-            ).toFixed(2)
+            ).toFixed(2),
           ),
           totalAmount: parseFloat(
             (
@@ -137,7 +137,7 @@ export const HomePages = ({
               service *
               (parseFloat(percent) / 100) *
               parseFloat(gram ?? "0")
-            ).toFixed(2)
+            ).toFixed(2),
           ),
         });
         setCalc(calcs);
@@ -156,7 +156,7 @@ export const HomePages = ({
           percentage: parseFloat(percent),
           laborCost: parseFloat(gram ?? "0"),
           costPerBaht: parseFloat(
-            (goldPrice * service * (parseFloat(percent) / 100)).toFixed(2)
+            (goldPrice * service * (parseFloat(percent) / 100)).toFixed(2),
           ),
           totalAmount: calcs,
         });
@@ -312,7 +312,7 @@ export const HomePages = ({
           background: "#333",
           color: "#fff",
         },
-      }
+      },
     );
   };
 
@@ -366,7 +366,7 @@ export const HomePages = ({
                             ทองคำแท่ง 96.5%
                           </span>
                           <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold flex flex-row">
-                            {(data?.gold965.ask ?? 0).toLocaleString(`th-TH`, {
+                            {(data?.gold965?.ask ?? 0).toLocaleString(`th-TH`, {
                               minimumFractionDigits: 0,
                               maximumFractionDigits: 2,
                             })}
@@ -388,7 +388,10 @@ export const HomePages = ({
                           <span className=" text-3xl bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent font-bold">
                             {(
                               Math.round(
-                                (data?.gold965?.ask ?? 0) * 0.0656 * 0.96 * 15.2
+                                (data?.gold965?.ask ?? 0) *
+                                  0.0656 *
+                                  0.96 *
+                                  15.2,
                               ) ?? 0
                             ).toLocaleString(`th-TH`, {
                               minimumFractionDigits: 0,
@@ -404,26 +407,26 @@ export const HomePages = ({
                     <div
                       className={`bg-white/10 border-white/10 px-3 py-1 w-full backdrop-blur-xl border  rounded-full flex flex-row items-center justify-center gap-x-2`}
                     >
-                      {(data?.gold965.change_today ?? 0) > 0 ? (
+                      {(data?.gold965?.change_today ?? 0) > 0 ? (
                         <ArrowUp color={"#11ff00"} size={14} />
                       ) : (
                         <ArrowDown color={"red"} size={14} />
                       )}
                       <div className="  font-bold text-xs">
-                        {data?.gold965.change_today}
+                        {data?.gold965?.change_today}
                       </div>
                     </div>
 
                     <div
                       className={`bg-white/10 border-white/10 px-3 py-1 w-full backdrop-blur-xl border rounded-full flex flex-row items-center justify-center gap-x-2`}
                     >
-                      {(data?.gold965.change_yesterday ?? 0) > 0 ? (
+                      {(data?.gold965?.change_yesterday ?? 0) > 0 ? (
                         <ArrowUp color={"#11ff00"} size={14} />
                       ) : (
                         <ArrowDown color={"red"} size={14} />
                       )}
                       <div className="  font-bold text-xs">
-                        วันนี้ {data?.gold965.change_yesterday}
+                        วันนี้ {data?.gold965?.change_yesterday}
                       </div>
                     </div>
                   </div>
@@ -465,7 +468,7 @@ export const HomePages = ({
                         inputMode="decimal"
                         min="0"
                         max="100"
-                        value={gPrice ?? data?.gold965.ask.toString()}
+                        value={gPrice ?? data?.gold965?.ask.toString()}
                         onValueChange={(e) => validateGPriceInput(e)}
                       />
                     </div>
