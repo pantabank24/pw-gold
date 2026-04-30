@@ -10,8 +10,8 @@ export async function GET() {
     const res = await axios.get(url);
     const $ = cheerio.load(res.data, { xmlMode: true });
 
-    const ask = parseFloat($('saleprice').text().replace(/,/g, ''));
-    const bid = parseFloat($('buyprice').text().replace(/,/g, ''));
+    const ask = parseFloat($('buyprice').text().replace(/,/g, ''));
+    const bid = parseFloat($('saleprice').text().replace(/,/g, ''));
     const changeToday = parseFloat($('buypricechg').text().replace(/,/g, ''));
     const changeFromYesterday = parseFloat($('SumOfChg').text().replace(/,/g, ''));
     const latestUpdate = $('update').text();
